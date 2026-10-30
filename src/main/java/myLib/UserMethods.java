@@ -3,6 +3,9 @@ package myLib;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.PatternSyntaxException;
@@ -151,5 +154,26 @@ public class UserMethods {
         myPrinter(message);
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
+    }
+
+    public Date requestDate(String message) {
+        Date date = null;
+        boolean isDateValid = false;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(message);
+
+        while(!isDateValid) {
+            try {
+                date = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(scanner.nextLine());
+                isDateValid = true;
+            } catch (ParseException e) {
+                System.out.println("Error while parsing: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+
+        return date;
     }
 }

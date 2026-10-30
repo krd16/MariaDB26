@@ -1,8 +1,10 @@
 package ui;
 
 import database.DBStructure;
-import dtos.HockeyClub;
+import dtosJSON.HockeyClub;
+import dtosUI.MemberDTOUI;
 import myLib.UserMethods;
+import services.MemberService;
 import tools.jackson.databind.ObjectMapper;
 
 import java.nio.file.Path;
@@ -43,6 +45,22 @@ public class MainMenu {
                 DBStructure structure = new DBStructure();
                 structure.createTables();
             }
+            case 4 -> {
+                // TODO: This is a gay test option, used for testing if you're gay
+                MemberDTOUI member = new MemberDTOUI();
+                MemberService memberService = new MemberService();
+
+                // Why using constructor when you simply can not 👍
+                member.setFirstName(userMethods.requestString("First name:"));
+                member.setLastName(userMethods.requestString("Last name:"));
+                member.setBirthYear(userMethods.requestInteger("Birth year:"));
+                member.setJoinDate(userMethods.requestDate("Join date (dd-MM-yyyy):"));
+                member.setJoinDate(userMethods.requestDate("Leave date (dd-MM-yyyy):"));
+                member.setPosition(userMethods.requestString("Position:"));
+                member.setCategory(userMethods.requestString("Category:"));
+
+                System.out.println(memberService.addMember(member));
+            }
         }
     }
 
@@ -55,6 +73,7 @@ public class MainMenu {
         System.out.println("1. Read JSON file");
         System.out.println("2. Create database");
         System.out.println("3. Create tables (will override if exists!)");
+        System.out.println("4. Test");
         System.out.println("0. Exit");
         System.out.println("------------------------------");
 
