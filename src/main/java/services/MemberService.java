@@ -20,6 +20,7 @@ public class MemberService {
         int positionId = playingPositionRepository.positionIdByName(member.getPosition());
         int categoryId = categoryRepository.categoryIdByName(member.getCategory());
 
+        // This variable checks
         boolean elegibleForInsert = true;
 
         // Join date has to be before today
@@ -30,7 +31,7 @@ public class MemberService {
 
         // Position name has to exist inside the database or else be null
         if (member.getPosition().isBlank()) {
-            member.setPosition(null);
+            positionId = 0;
         } else {
             // If playingPositionRepository.positionIdByName() returns 0, position was not found or does not exist inside the DB
             // If it returns -1, an SQLException has been triggered
@@ -45,7 +46,7 @@ public class MemberService {
 
         // Category name has to exist inside the database
         if (member.getCategory().isBlank()) {
-            member.setCategory(null);
+            categoryId = 0;
         } else {
             // If categoryRepository.categoryIdByName() returns 0, category was not found or does not exist inside the DB
             // If it returns -1, an SQLException has been triggered

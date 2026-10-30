@@ -8,6 +8,7 @@ import services.MemberService;
 import tools.jackson.databind.ObjectMapper;
 
 import java.nio.file.Path;
+import java.sql.Date;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -55,7 +56,7 @@ public class MainMenu {
                 member.setLastName(userMethods.requestString("Last name:"));
                 member.setBirthYear(userMethods.requestInteger("Birth year:"));
                 member.setJoinDate(userMethods.requestDate("Join date (dd-MM-yyyy):"));
-                member.setJoinDate(userMethods.requestDate("Leave date (dd-MM-yyyy):"));
+                member.setLeaveDate(userMethods.requestDate("Leave date (dd-MM-yyyy):"));
                 member.setPosition(userMethods.requestString("Position:"));
                 member.setCategory(userMethods.requestString("Category:"));
 

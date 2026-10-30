@@ -165,7 +165,7 @@ public class UserMethods {
 
         while(!isDateValid) {
             try {
-                date = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(scanner.nextLine());
+                date = new Date(new SimpleDateFormat("dd-MM-yyyy").parse(scanner.nextLine()).getTime());
                 isDateValid = true;
             } catch (ParseException e) {
                 System.out.println("Error while parsing: " + e.getMessage());
